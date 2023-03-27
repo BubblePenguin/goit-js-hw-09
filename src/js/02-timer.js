@@ -61,6 +61,11 @@ function addLeadingZero(value) {
 
 const onStart = () => {
   timerId = setInterval(() => {
+    const timeDif = time - Date.now();
+    if (timeDif / 1000 < 0) {
+      clearInterval(timerId);
+      return;
+    }
     const { days, hours, minutes, seconds } = convertMs(time - Date.now());
 
     formTime.days.textContent = addLeadingZero(days);

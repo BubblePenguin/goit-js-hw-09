@@ -36,11 +36,11 @@ refs.form.addEventListener('submit', e => {
   const step = Number(refs.step.value);
   const amount = Number(refs.amount.value);
 
-  let arr = [];
   for (let i = 0; i < amount; i++) {
-    arr.push(createPromise(i + 1, delay + step * i));
+    createPromise(i + 1, delay + step * i)
+      .then(res)
+      .catch(rej);
   }
-  console.log(arr);
 
-  arr.map(x => x.then(res).catch(rej));
+  document.querySelectorAll('.form input').forEach(input => (input.value = ''));
 });
